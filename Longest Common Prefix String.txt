@@ -1,0 +1,56 @@
+ /*
+   Time Complexity  : O(n*m)
+   Space Complexity : O(m*Log(n))
+
+   where 'n' is the size of 'arr' and 'm' is the maximum length of 'arr[i]'.
+*/
+
+public class Solution {
+    public static String commonPrefix(String []arr,int n){
+        String output = divide(arr, 0, n - 1);
+
+        if (output.length() > 0)
+        {
+            return output;
+        }
+
+        // Base case of no common prefix.
+        else
+        {
+            return "-1";
+        }
+    }
+
+    // Recursive function to divide the current array into smaller subarrays.
+    public static String divide(String []input, int start, int end)
+    {
+        if (start == end)
+        {
+            return input[start];
+        }
+        if (end > start)
+        {
+            int mid = start + (end - start) / 2;
+            String out1 = divide(input, start, mid);
+            String out2 = divide(input, mid + 1, end);
+            return com_prefix(out1, out2);
+        }
+        return "";
+    }
+
+    // Function to find the common prefix of two strings.
+    public static String com_prefix(String out1, String out2)
+    {
+        String out = "";
+        int n1 = out1.length(), n2 = out2.length();
+        for (int i = 0, j = 0; i < n1 && j < n2; i++, j++)
+        {
+            if (out1.charAt(i) != out2.charAt(j))
+            {
+                break;
+            }
+            out += out1.charAt(i);
+        }
+        return out;
+    }
+} 

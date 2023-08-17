@@ -1,0 +1,38 @@
+//using in-build function of collection and array list
+
+public class Reverse_Array {
+	static void printArray(Integer arr[], int n) {
+	      System.out.print("Reversed array is:- \n");
+	      for (int i = 0; i < n; i++) {
+	         System.out.print(arr[i] + " ");
+	      }
+	   }
+	   //Reverse array using library function
+	   static void reverseArray(Integer arr[]) {
+	      //fetching array as list object
+	      //reversing the fetched object
+	      Collections.reverse(Arrays.asList(arr));
+	   }
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//or also another method
+//2 pointer method start and end
+
+public class Main {
+   //Function to print array
+   static void printArray(int arr[], int n) {
+      System.out.print("Reversed array is:- \n");
+      for (int i = 0; i < n; i++) {
+         System.out.print(arr[i] + " ");
+      }
+   }
+
+   //Function to reverse array using recursion
+   static void reverseArray(int arr[], int start, int end) {
+      if (start < end) {
+         int tmp = arr[start];
+         arr[start] = arr[end];
+         arr[end] = tmp;
+         reverseArray(arr, start + 1, end - 1);
+      }
+   }

@@ -1,0 +1,17 @@
+public static Node<Integer> insertNode(Node<Integer> head, int data, int pos){
+	Node<Integer> newNode = new Node<Integer>(data);
+	Node<Integer> temp =head;
+	int i=0;
+
+	if(pos == 0){
+	newNode.next = head;
+	return;
+	}
+
+	while(i < pos - 1){
+	temp = temp.next;
+	i++;
+	}
+	newNode.next = temp.next;
+	temp.next = newNode;
+}

@@ -1,0 +1,132 @@
+//////////////////////////////////Maximum and Minimum\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Approach 1.
+XOR and Comparison Operator
+
+Let us assume ‘b’ is minimum and ‘a’ is maximum among ‘a’ and ‘b’.( ‘a’ < ‘b’ ) is the comparison we will be using. We will calculate minimum and maximum as follows: 
+
+ 
+
+    We can write the minimum as ‘b’ ^ (( ‘a’ ^ ‘b’) & - ( ‘a’ < ‘b’)).
+        If ‘b’ is minimum ‘a’ < ‘b’ comes out to be all zeroes. (‘a’ ^ ‘b’) & ‘0’ comes out to ‘0’. Therefore expression value comes out to be ‘b’ finally which is the minimum.
+        If ‘a’ is minimum ‘a’ < ‘b’ comes out to be all ones. (‘a’ ^ ‘b’) & ‘1’ comes out to (‘a’ ^ ‘b’). Therefore expression value comes out to be ‘a’ finally which is the minimum.
+
+ 
+
+    We can write maximum as ‘a’ ^ (( ‘a’ ^ ‘b’) & - ( ‘a’ < ‘b’)).
+        If ‘a’ is maximum ‘a’ < ‘b’ comes out to be all zeroes. (‘a’ ^ ‘b’) & ‘0’ comes out to ‘0’. Therefore expression value comes out to be ‘a’ finally which is the maximum.
+        If ‘b’ is maximum ‘a’ < ‘b’ comes out to be all ones. (‘a’ ^ ‘b’) & ‘1’ comes out to (‘a’ ^ ‘b’). Therefore expression value comes out to be ‘b’ finally which is the maximum.
+
+ 
+
+    Return the minimum and the maximum.
+
+Time Complexity
+
+O(1)
+
+ 
+
+As we just apply the bitwise operation twice, constant time is taken
+Space Complexity
+
+O(1)
+
+ 
+
+As we just need to store only two values minimum and maximum, constant space is used.
+Code
+Java (SE 1.8)
+/*
+    Time Complexity: O(1)
+    Space Complexity: O(1)
+*/
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static ArrayList<Integer> findMinMax(int a, int b) 
+    {
+        ArrayList<Integer> ans = new ArrayList<Integer>(2);
+
+        // Stores minimum
+        int minVal = b ^ ((a ^ b) & (-1 * ((a < b) ? 1 : 0)));
+
+        // Stores maximum
+        int maxVal = a ^ ((a ^ b) & (-1 * ((a < b) ? 1 : 0)));
+
+        ans.add(minVal);
+        ans.add(maxVal);
+
+        return ans;
+    }
+}
+
+Approach 2
+Maximum Significant Bit Approach
+
+Let us assume ‘b’ is minimum and ‘a’ is maximum among ‘a’ and ‘b’.( ‘a’ - ‘b’ ) is non-negative if our assumption is true otherwise negative. We will calculate minimum and maximum as follows: 
+
+ 
+
+    We can write the minimum as ‘b’ + ((‘a’ - ‘b’) & ((‘a’ - ‘b’) >> (noOfBitsInInt - 1))). On right shifting ‘a’ - ‘b’ by 1 less than no of bits in int we get the most significant bit.
+        If ‘b’ is minimum ‘a’ - ‘b’ comes out to be non-negative and on right shifting, we get ‘0’. (‘a’ - ‘b’) & ‘0’ comes out to ‘0’. Therefore expression value comes out to be ‘b’ finally which is the minimum.
+        If ‘a’ is minimum ‘a’ - ‘b’ comes out to be negative and on right shifting, we get ‘1’. (‘a’ - ‘b’) & ‘1’ comes out to (‘a’ - ‘b’). Therefore expression value comes out to be ‘a’ finally which is the minimum.
+
+ 
+
+    We can write maximum as ‘a’ - ((‘a’ - ‘b’) & ((‘a’ - ‘b’) >> (noOfBitsInInt - 1))). On right shifting ‘a’ - ‘b’ by 1 less than no of bits in int we get most significant bit.
+        If ‘a’ is maximum ‘a’ - ‘b’ comes out to be non-negative and on right shifting, we get ‘0’. (‘a’ - ‘b’) & ‘0’ comes out to ‘0’. Therefore expression value comes out to be ‘a’ finally which is the maximum.
+        If ‘b’ is maximum ‘a’ - ‘b’ comes out to be negative and on right shifting, we get ‘1’. (‘a’ - ‘b’) & ‘1’ comes out to (‘a’ - ‘b’). Therefore expression value comes out to be ‘b’ finally which is the maximum.
+
+ 
+
+    Return the minimum and the maximum.
+
+Time Complexity
+
+O(1)
+
+ 
+
+As we just apply the bitwise operation twice, constant time is taken.
+Space Complexity
+
+O(1)
+
+ 
+
+As we just need to store only two values minimum and maximum, constant space is used.
+Code
+Java (SE 1.8)
+/*
+    Time Complexity: O(1)
+    Space Complexity: O(1)
+*/
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static ArrayList<Integer> findMinMax(int a, int b) 
+    {
+        ArrayList<Integer> ans = new ArrayList<Integer>(2);
+
+        // Size of char data type
+        int CHAR_BIT = 8;
+
+        // Size of int data type
+        int INT_LEN = 16;
+
+        // Stores minimum
+        int first = b + ((a - b) & ((a - b) >> (INT_LEN * CHAR_BIT - 1)));
+
+        // Stores maximum
+        int second = a - ((a - b) & ((a - b) >> (INT_LEN * CHAR_BIT - 1)));
+
+        ans.add(first);
+        ans.add(second);
+
+        return ans;
+    }
+}

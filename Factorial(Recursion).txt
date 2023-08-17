@@ -1,0 +1,26 @@
+//User function Template for Java
+class Solution{
+    static ArrayList<Long> factorialNumbers(long N){
+        // code here
+         ArrayList<Long> al = new ArrayList<>();
+        long f=1;
+        for(long i=1; i<=N; i++)
+        {
+            f=f*i;
+            if(f<=N) al.add(f);
+            
+            else return al;
+        }
+        return al;
+    }
+}
+
+//or easyway
+
+
+public static int fact(int n) {
+		if(n==0) {
+			return 1;
+		}
+		return n * fact(n-1);
+	}

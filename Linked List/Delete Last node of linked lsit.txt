@@ -1,0 +1,20 @@
+public class Solution {
+    public static Node deleteLast(Node list){
+        // Write your code here
+        if (list == null || list.next == null) {
+            return null; // If there's only one node, return null to indicate an empty list
+        }
+
+        // Traverse the list to find the second-to-last node
+        Node temp = list;
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+
+       
+        temp.next = null;
+
+        // Return the head of the modified list
+        return list;
+    }
+}

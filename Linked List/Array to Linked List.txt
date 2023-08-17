@@ -1,0 +1,25 @@
+public static class Node
+	{
+		int data;
+		Node next;
+	};
+	static Node root;
+
+    public static Node insert(Node root, int item) {
+        Node temp = new Node();
+        temp.data = item;
+        temp.next = root;
+        root = temp;
+        return root;
+    }
+
+    public static Node constructLL(int[] arr) {
+        Node root = null; // Initialize the root of the linked list
+        
+        for (int i = arr.length - 1; i >= 0; i--) {
+            root = insert(root, arr[i]);
+        }
+        
+        return root;
+    }
+}

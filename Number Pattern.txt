@@ -1,0 +1,46 @@
+
+/*
+    Time Complexity: O(N ^ 2)
+    Space Complexity: O(N ^ 2)
+
+    Where N is the given number of rows of the array.
+*/
+public class Solution {
+
+	public static String[] NumberPattern(int n) {
+
+		// Declare a string array
+		String result[] = new String[n];
+
+		// Result index marker
+		int index = 0;
+		int k;
+
+		for (int i = 1; i <= n; i++) {
+
+			// The local variable stores the value of i from where it should start the
+			// pattern for the particular row
+			k = i;
+
+			// Declare a string temp that will store the number of elements for each row.
+			String temp = "";
+
+			for (int j = 1; j <= i; j++) {
+
+				// Concat k to the string temp
+				temp += k;
+
+				// Increment K by 1;
+				k++;
+			}
+
+			// Add the temp string to the result array
+			result[index++] = temp;
+
+		}
+
+		// Return the array
+		return result;
+
+	}
+}

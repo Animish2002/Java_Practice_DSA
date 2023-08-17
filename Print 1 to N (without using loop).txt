@@ -1,0 +1,75 @@
+We will use a recursive function because we can’t use a loop. This function takes an integer and an array as an argument. The base case for the function is when the ‘argument integer’ becomes zero. Otherwise, we will call the recursive function ‘current element - 1’ and insert the current element in the array.
+
+ 
+
+The steps are as follows:-
+ 
+
+// Recursive Function to push elements
+
+function recursiveFunction(int x, int[] arr):
+
+    If ‘x == 0’:
+        Return;
+    Call recursiveFunction(x - 1, arr).
+    Insert ‘x’ into the array ‘arr’.
+     
+
+// Function to get an array from ‘n’ to ‘1’ without loop
+
+function printNos(int x):
+Approach:
+    Create an empty integer array ‘arr’.
+    Call recursiveFunction(x, arr).
+    Return ‘arr’.
+
+Time Complexity
+
+O( n ), where n is the integer.
+ 
+
+We will call the recursive function ‘n’ times.
+
+ 
+
+Hence, the time complexity is O( n ).
+Space Complexity
+
+O( n ), where n is the integer.
+
+ 
+
+‘N’ recursive functions will be called.
+ 
+
+Hence, the space complexity is O( n ).
+/*
+    Time Complexity: O( n )
+    Space Complexity: O( n )
+
+    where n is the integer.
+*/
+public class Solution {
+    public static int[] printNos(int x) {
+        // Declaring empty integer array
+        int []ans = new int[x];
+
+        // Calling recursive function
+        recursiveFunction(x, ans);
+
+        return ans;
+    }
+
+    public static void recursiveFunction(int x, int []ans) {
+        if(x == 0) {
+            return;
+        }
+
+        // Call recursive function
+        recursiveFunction(x - 1, ans);
+
+        // Insert element in the array
+        ans[x - 1] =x;
+    }
+
+}

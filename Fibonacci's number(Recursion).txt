@@ -1,0 +1,10 @@
+class Solution {
+    public int fib(int n) {
+        if(n==0	||	n==1)	{ //Base	Case
+			return n;
+		}
+		int a	=	fib(n-1); //Recursive	call
+		int b	=	fib(n-2); //Recursive	call
+		return a+b;
+    }
+}
